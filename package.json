@@ -1,12 +1,12 @@
 {
   "name": "sample_random_data_generator",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "This is a tool that will generate a array from a definition.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Justin Allen",
   "license": "ISC"
 }

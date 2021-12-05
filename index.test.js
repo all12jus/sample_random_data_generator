@@ -1,4 +1,4 @@
-const { GenerateSample, RowNumber, RandomNumber, RandomYear } = require("./main");
+const { GenerateSample, RowNumber, RandomNumber, RandomYear } = require("./index");
 
 describe("GenerateSample", function () {
     test('function exists', () => {
