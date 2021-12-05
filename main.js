@@ -46,6 +46,21 @@
             throw "Second Argument is Greater Than First Argument.";
         }
 
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
+    output.RandomYear = function (min, max) {
+        if (!Number.isInteger(min)){
+            throw "First Argument is Not An Number.";
+        }
+
+        if (!Number.isInteger(max)){
+            throw "Second Argument is Not An Number.";
+        }
+
+        if (min >= max){
+            throw "Second Argument is Greater Than First Argument.";
+        }
         return Math.floor(Math.random() * (max - min + 1) + min)
     };
 
