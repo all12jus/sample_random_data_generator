@@ -1,4 +1,5 @@
-const { GenerateSample, RowNumber, RandomNumber, RandomYear } = require("./index");
+const { GenerateSample, RowNumber, RandomNumber, RandomYear, RandomRegEx } = require("./index");
+const RandExp = require('randexp');
 
 describe("GenerateSample", function () {
     test('function exists', () => {
@@ -223,3 +224,44 @@ describe('RandomYear', function () {
         expect(sample[0].year).toEqual(expect.any(Number));
     });
 });
+
+describe("regex", function () {
+    test('RandomRegEx is a function', () => {
+        expect(RandomRegEx).not.toBeUndefined();
+        expect(RandomRegEx).not.toBeNull();
+        expect(RandomRegEx).toEqual(expect.any(Function));
+    });
+
+    test('RandomRegEx is a function (!RandExp) throws', () => {
+        expect(() => {
+            let result = RandomRegEx();
+        }).toThrowError(/^First Argument is Not An RandExp.$/);
+    });
+
+    test('RandomRegEx is a function (RandExp) => value:passing regex', () => {
+        let result = RandomRegEx(new RandExp(/hello+ (world|to you)/));
+
+        expect(result).not.toBeUndefined();
+        expect(result).not.toBeNull();
+        // expect(result).toEqual(expect.any(Number));
+        // expect(result).toBeGreaterThanOrEqual(2000);
+        // expect(result).toBeLessThan(2020);
+    });
+
+    test('([{value:RandomRegEx()}], 10) => [{value:Value}].length=10', () => {
+        let sample = GenerateSample([
+            { key: "value", type: (index) => RandomRegEx(new RandExp(/hello+ (world|to you)/)) }
+        ], 10);
+        expect(sample.length).toBe(10);
+        expect(sample[0]).not.toBeNull();
+        expect(Object.keys(sample[0]).length).toBe(1);
+        expect(sample[0].value).not.toBeNull();
+        // expect(sample[0].id).toBe(0);
+        // for (let i = 0; i < 10; i++) {
+        //     expect(sample[i].id).toBe(i);
+        // }
+    });
+
+
+    // new RandExp(/hello+ (world|to you)/).gen();
+})

@@ -1,4 +1,5 @@
 (() => {
+    const RandExp = require('randexp');
     let output = {};
 
     output.GenerateSample = function(input_list, input_count){
@@ -63,6 +64,15 @@
         }
         return Math.floor(Math.random() * (max - min + 1) + min)
     };
+
+    output.RandomRegEx = function (expression) {
+        if (expression === undefined || expression === null || expression instanceof RandExp !== true){
+            throw "First Argument is Not An RandExp.";
+        }
+        console.log(expression);
+        console.log(expression instanceof RandExp);
+        return expression.gen();
+    }
 
     module.exports = output;
 })()
